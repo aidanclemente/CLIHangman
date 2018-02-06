@@ -8,9 +8,27 @@ var Letter = require("./Letter.js");
 
 //   * A function that takes a character as an argument and calls the guess function on each letter object (the second function defined in `Letter.js`)
 
-function Word() {
+function Word(chosenWord) {
+    //Guesses Remaining
+    this.guessesRemaining = 13;
+    
     //needs to store the selected word from wordsArray
+    this.chosenWord = chosenWord,
 
+    //an empty array to store guessed letters
+    this.guessedLetters = [],
+
+    //Boolean if the entire word was revealed, default set to false
+    this.entireWordGuessed = false,
+
+    //needs to create an object representing the word to guess
+    this.makeWord = function() {
+        var strWord;
+        for (var i = 0; i < this.chosenWord[i].length; i++) {
+
+        };
+    }
+    
     //create a function that
         //use the Letter constructor to create a new Letter object for each letter of the selected word
 
