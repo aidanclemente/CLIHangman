@@ -7,21 +7,24 @@ var Letter = require("./Letter.js");
 //   * A function that returns a string representing the word. This should call the function on each letter object (the first function defined in `Letter.js`) that displays the character or an underscore and concatenate those together.
 
 //   * A function that takes a character as an argument and calls the guess function on each letter object (the second function defined in `Letter.js`)
-
+var chosenWord = "PIECE";
+var start = new Word(chosenWord);
+start.splitWord();
+console.log(start.splitWord())
 
 // Word Constructor
 function Word(chosenWord) {
     console.log("Yeah!! Word constructor is working!");
-    //needs to store the selected word from wordsArray
-    this.chosenWord = chosenWord,
 
+    // Needs to store the selected word from wordsArray
+    this.chosenWord = chosenWord,
     
     //   * An array of `new` Letter objects representing the letters of the underlying word
     this.arrayOfLetterObjects = [];
 
-    //Now I need a function to break down the chosenWord so I can use array notation 
+    // Now I need a function to break down the chosenWord to populate the array
 
-    //populating the array
+    // Populating the array
     this.splitWord = function() {
         console.log("split word function has been run!");
         // Splitting chosen word and then populating the array
@@ -29,7 +32,7 @@ function Word(chosenWord) {
             var currentLetter = new Letter(chosenWord[i]);
             this.arrayOfLetterObjects.push(currentLetter);
         
-            //Check to make sure what's being pushed
+            // Check to make sure what's being pushed
             console.log(this.arrayOfLetterObjects); 
         };
         
@@ -37,7 +40,7 @@ function Word(chosenWord) {
 
 //   * A function that returns a string representing the word. This should call the function on each letter object (the first function defined in `Letter.js`) that displays the character or an underscore and concatenate those together.
     
-    //create a function that
+    // Create a function that returns a string representing the word
     this.returnString = function() {
         var strWord = "";
             for (var i = 0; i < this.arrayOfLetterObjects.length; i++) {
@@ -47,9 +50,9 @@ function Word(chosenWord) {
         return strWord;
     };
 
-    //create a function that 
-        //takes a character as an argument
-        //calls the checkLetter function on each letter object
+    // Create a function that 
+        // Takes a character as an argument
+        // Calls the checkLetter function on each letter object
     this.guess = function(letterGuessed) {
         for (var i = 0; i < arrayOfLetterObjects.length; i++) {
             this.arrayOfLetterObjects[i].checkLetter(letterGuessed);
