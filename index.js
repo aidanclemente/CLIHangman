@@ -7,9 +7,9 @@ var Word = require("./Word.js");
 //   * Prompts the user for each guess and keeps track of the user's remaining guesses
 
 function hangMan() {
-    this.wordsArray = ["DAHLIA", "HYACINTH", "BUTTERCUP", "LARKSPUR", "ANEMONE", "HYDRANGEA", "ORCHIDS", "BEGONIA", "PEONY", "MARIGOLD"],
-    this.randomNumber = Math.floor(Math.random()* wordsArray.length),
-    this.chosenWord = wordsArray[randomNumber],
+    var wordsArray = ["DAHLIA", "HYACINTH", "BUTTERCUP", "LARKSPUR", "ANEMONE", "HYDRANGEA", "ORCHIDS", "BEGONIA", "PEONY", "MARIGOLD"];
+    var randomNumber = Math.floor(Math.random()* wordsArray.length);
+    var chosenWord = wordsArray[randomNumber];
 }
 
 
