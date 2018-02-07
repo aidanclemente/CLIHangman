@@ -11,61 +11,67 @@ var Letter = require("./Letter.js");
 
 // Word Constructor
 function Word(chosenWord) {
-
+    console.log("Yeah!! Word constructor is working!");
     //needs to store the selected word from wordsArray
     this.chosenWord = chosenWord,
 
-    //Now I need a function to break down the chosenWord so I can use array notation 
     
-    // An empty array to store guessed letters
-    this.guessedLetters = [],
-
-//   * An array of `new` Letter objects representing the letters of the underlying word
+    //   * An array of `new` Letter objects representing the letters of the underlying word
     this.arrayOfLetterObjects = [];
 
-//   * A function that returns a string representing the word. This should call the function on each letter object (the first function defined in `Letter.js`) that displays the character or an underscore and concatenate those together.
+    //Now I need a function to break down the chosenWord so I can use array notation 
 
-
-    //Guesses Remaining
-    this.guessesRemaining = 13,
-
-
-    //Boolean if the entire word was revealed, default set to false
-    this.entireWordGuessed = false,
-
-    //needs to create an object representing the word to guess
-    this.makeWord = function() {
-        var strWord = "";
-
-        //I'm not quite sure this will work
+    //populating the array
+    this.splitWord = function() {
+        console.log("split word function has been run!");
+        // Splitting chosen word and then populating the array
         for (var i = 0; i < this.chosenWord.length; i++) {
             var currentLetter = new Letter(chosenWord[i]);
             this.arrayOfLetterObjects.push(currentLetter);
-    
+        
             //Check to make sure what's being pushed
-            console.log(this.arrayOfLetterObjects);
-            strWord += this.arrayOfLetterObjects[i].showLetter();
+            console.log(this.arrayOfLetterObjects); 
         };
-
-        return strWord
+        
     };
+
+//   * A function that returns a string representing the word. This should call the function on each letter object (the first function defined in `Letter.js`) that displays the character or an underscore and concatenate those together.
     
     //create a function that
-        //use the Letter constructor to create a new Letter object for each letter of the selected word
+    this.returnString = function() {
+        var strWord = "";
+            for (var i = 0; i < this.arrayOfLetterObjects.length; i++) {
+                strWord += this.arrayOfLetterObjects[i].showLetter();
+            }
 
-        //stores the objects in an array
-
-        //concatenate the letters/underscores together to form a string and return the string to the console
+        return strWord;
+    };
 
     //create a function that 
         //takes a character as an argument
         //calls the checkLetter function on each letter object
+    this.guess = function(letterGuessed) {
+        for (var i = 0; i < arrayOfLetterObjects.length; i++) {
+            this.arrayOfLetterObjects[i].checkLetter(letterGuessed);
+        }   
+    };
 
-    for (var i = 0; i < arrayOfLetterObjects.length; i++) {
-        arrayOfLetterObjects[i].checkLetter(letterGuessed);
+};
 
-    }
-
-}
 
 module.exports = Word;
+
+
+
+
+
+// var piece = this.chosenWord;
+
+// // Splitting chosen word and then populating the array
+// for (var i = 0; i < piece.length; i++) {
+    
+//     this.arrayOfLetterObjects.push(piece[i]);
+
+//     //Check to make sure what's being pushed
+//     console.log(this.arrayOfLetterObjects); 
+// };
