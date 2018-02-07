@@ -24,6 +24,7 @@ function Letter(letterInWord) {
 
     // Check Letter for match function
     this.checkLetter = function(letterGuessed) {
+        console.log("Check Letter ran");
         if (letterGuessed.toUpperCase() === this.letter.toUpperCase()) {
             this.hasBeenGuessed = true;
         }
