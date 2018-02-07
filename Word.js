@@ -7,10 +7,11 @@ var Letter = require("./Letter.js");
 //   * A function that returns a string representing the word. This should call the function on each letter object (the first function defined in `Letter.js`) that displays the character or an underscore and concatenate those together.
 
 //   * A function that takes a character as an argument and calls the guess function on each letter object (the second function defined in `Letter.js`)
-var chosenWord = "PIECE";
-var start = new Word(chosenWord);
-start.splitWord();
-console.log(start.splitWord())
+// var chosenWord = "PIECE";
+// var start = new Word(chosenWord);
+// start.returnString();
+
+// console.log(start.Word)
 
 // Word Constructor
 function Word(chosenWord) {
@@ -20,23 +21,10 @@ function Word(chosenWord) {
     this.chosenWord = chosenWord,
     
     //   * An array of `new` Letter objects representing the letters of the underlying word
-    this.arrayOfLetterObjects = [];
-
-    // Now I need a function to break down the chosenWord to populate the array
-
     // Populating the array
-    this.splitWord = function() {
-        console.log("split word function has been run!");
-        // Splitting chosen word and then populating the array
-        for (var i = 0; i < this.chosenWord.length; i++) {
-            var currentLetter = new Letter(chosenWord[i]);
-            this.arrayOfLetterObjects.push(currentLetter);
-        
-            // Check to make sure what's being pushed
-            console.log(this.arrayOfLetterObjects); 
-        };
-        
-    };
+    this.arrayOfLetterObjects = chosenWord.split("").map(function(char) {
+        return new Letter(char);
+    });
 
 //   * A function that returns a string representing the word. This should call the function on each letter object (the first function defined in `Letter.js`) that displays the character or an underscore and concatenate those together.
     
@@ -47,7 +35,9 @@ function Word(chosenWord) {
                 strWord += this.arrayOfLetterObjects[i].showLetter();
             }
 
-        return strWord;
+        console.log(strWord);
+
+        // console.log("xxx", this.arrayOfLetterObjects);
     };
 
     // Create a function that 
@@ -60,6 +50,7 @@ function Word(chosenWord) {
     };
 
 };
+
 
 
 module.exports = Word;

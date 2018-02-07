@@ -5,23 +5,30 @@ var Word = require("./Word.js");
 //   * Randomly selects a word and uses the `Word` constructor to store it
 
 //   * Prompts the user for each guess and keeps track of the user's remaining guesses
+
 var hangman = {
     guessesRemaining: 13,
 
     wordsArray: ["DAHLIA", "HYACINTH", "BUTTERCUP", "LARKSPUR", "ANEMONE", "HYDRANGEA", "ORCHIDS", "BEGONIA", "PEONY", "MARIGOLD"],
 
-    randomNumber: Math.floor(Math.random()* this.wordsArray.length),
-
-    chosenWord: this.wordsArray[randomNumber],
-// console.log("Chosen Word: ", chosenWord),
 
     chooseWord: function () {
-        var newWord = new Word(this.chosenWord);
-        console.log(newWord.splitWord());
+        var randomNumber = Math.floor(Math.random()* this.wordsArray.length);
+        var chosenWord = this.wordsArray[randomNumber];
+
+        console.log("Chosen Word: ", chosenWord);
+        var newWord = new Word(chosenWord);
+
+        //save this untill they choose to start game
+            newWord.returnString();
+
+        //then I prompt them to guess a letter
     }
 
 
 }
+// console.log(hangman.wordsArray);
+hangman.chooseWord();
 // chosenWord.splitWord();
 // console.log(chosenWord.splitWord());
     
