@@ -18,24 +18,17 @@ var hangman = {
     // Chooses a word randomly, splits the word, creates Letter objects and stores them in an array
     chooseWord: function () {
         var randomNumber = Math.floor(Math.random()* this.wordsArray.length);
-        var chosenWord = this.wordsArray[randomNumber];
+        chosenWord = this.wordsArray[randomNumber];
 
             //This console is showing the chosen word
-            // console.log("Chosen Word: ", chosenWord);
-        var newWord = new Word(chosenWord);
+            console.log("Chosen Word: ", chosenWord);
+        newWord = new Word(chosenWord);
 
         newWord.returnString();
         console.log("\n");
     },
 
     startGame: function() {
-        var that = this;
-        //prompt the user if they are ready to start the game or not
-            //if yes, 
-                // Clear the guessedLetters array before starting a new game
-                //show returnString
-
-            //if no, say something snarky "Your Loss!"
 
         inquirer.prompt([
             {
@@ -45,11 +38,11 @@ var hangman = {
             }
         ]).then(function(answer) {
             if(answer.startGame) {
-                that.newGame();
+                this.newGame();
             } else {
                 console.log("Whenever you're ready, I'll be waiting for you!");
             }
-        });
+        }.bind(this));
     },
 
     newGame: function() {
@@ -67,7 +60,6 @@ var hangman = {
 
     promptForLetters: function() {
         var that = this;
-
         //prompt the user for letters
         inquirer.prompt([
             {
@@ -86,12 +78,29 @@ var hangman = {
             var userGuess = answer.letterGuessed.toUpperCase();
             console.log("User Guess: ", userGuess);
 
-            that.guess(userGuess);
+            newWord.guess(userGuess);
             
-            console.log("xxx", that.chosenWord);
-            console.log("Chosen word is: ", this.chosenWord);
+            // These are returning undefined
+            console.log("xxx", newWord);
 
-            // call the guess function here and pass userGuess 
+            // Push guess into the guessedLetters array
+            //This is not working, console logs an empty array
+            
+            this.guessedLetters.push(userGuess);
+                console.log("Guessed LEtters: ", this.guessedLetters);
+
+            if (chosenWord.split("").indexOf(userGuess) != -1) {
+                console.log("Yeah! " + userGuess + " was correct!");
+                
+                //This returnString isn't updated with the letter revealed
+                newWord.returnString();
+            } else {
+                console.log("Nope. Guess again!");
+                // show updated number of guessesRemaining
+               newWord.returnString()
+                // show the array of letters guessed
+                //call the promptForLetters again if guessesRemaining > 0
+            }
         }.bind(this));
             // if isLetter === true
                 // give them feed back

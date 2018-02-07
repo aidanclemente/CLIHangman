@@ -28,7 +28,8 @@ function Word(chosenWord) {
             for (var i = 0; i < this.arrayOfLetterObjects.length; i++) {
                 strWord += this.arrayOfLetterObjects[i].showLetter();
             }
-
+        
+        // This prints the dashes or updates with letters
         console.log(strWord);
 
         // console.log("xxx", this.arrayOfLetterObjects);
@@ -38,7 +39,8 @@ function Word(chosenWord) {
         // Takes a character as an argument
         // Calls the checkLetter function on each letter object
     this.guess = function(letterGuessed) {
-        for (var i = 0; i < arrayOfLetterObjects.length; i++) {
+        console.log("Guess is running");
+        for (var i = 0; i < this.arrayOfLetterObjects.length; i++) {
             this.arrayOfLetterObjects[i].checkLetter(letterGuessed);
         }   
     };
