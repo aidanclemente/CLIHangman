@@ -86,11 +86,13 @@ var hangman = {
             var userGuess = answer.letterGuessed.toUpperCase();
             console.log("User Guess: ", userGuess);
 
+            that.guess(userGuess);
+            
             console.log("xxx", that.chosenWord);
             console.log("Chosen word is: ", this.chosenWord);
 
             // call the guess function here and pass userGuess 
-        })
+        }.bind(this));
             // if isLetter === true
                 // give them feed back
                 // guessesRemain--
