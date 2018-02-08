@@ -1,14 +1,7 @@
-var Letter = require("./Letter.js");
-
-var chosenWord = "AIDAN";
-var start = new Word(chosenWord);
-console.log(start.chosenWord);
+var Letter = require("./Letter.js")
 
 // Word Constructor
 function Word(chosenWord) {
-
-    //This is to check if word has been completely guessed
-    this.won = false;
 
     this.chosenWord = chosenWord,
 
@@ -17,7 +10,7 @@ function Word(chosenWord) {
         return new Letter(char);
     });
     
-    // Create a function that returns a string representing the word
+    // Returns a string representing the word
     this.returnString = function() {
         strWord = "";
             for (var i = 0; i < this.arrayOfLetterObjects.length; i++) {
@@ -27,9 +20,6 @@ function Word(chosenWord) {
         // This prints the dashes or updates with letters
         console.log(strWord);
     };
-
-    // this.displayWord = chosenWord.strWord.trim();
-    // console.log("DXXL: ", this.displayWord);
 
     this.guess = function(letterGuessed) {
 

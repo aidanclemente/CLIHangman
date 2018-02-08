@@ -75,16 +75,18 @@ var hangman = {
 
             newWord.guess(userGuess);
             
-            // Check if the userGuess is in the this.guessedLetters array
+            // Check if the userGuess is in the guessedLetters array
             if (that.guessedLetters.indexOf(userGuess) != -1) {
                 console.log("\nYou've already guessed ", userGuess + ". Please guess a new letter.\n")
-                this.promptForLetters();
+                that.promptForLetters();
             } else if (chosenWord.split("").indexOf(userGuess) != -1) {
-                this.guessedLetters.push(userGuess);
+                that.guessedLetters.push(userGuess);
                 console.log("Yeah! " + userGuess + " was correct!");
 
+                console.log("dddd d: ", newWord.strWord);
+
          // XXXXXXXXXXXX    This isn't working!!!!  XXXXXXXXXXXXXXXXX
-                if (newWord.returnString() == chosenWord) {
+                if (newWord.strWord == chosenWord) {
                     // If guessed alert the user they won
                         // Ask the user if they want to play again
                             //if yes, then startGame
@@ -103,8 +105,9 @@ var hangman = {
                 }
 
                 // Continue game if not won else game over
-                if (this.guessesRemaining > 0 && newWord.won === false) {
-                    this.promptForLetters();
+                // && chosenWord === that.strWord
+                if (that.guessesRemaining > 0) {
+                    that.promptForLetters();
                 } else{
                     console.log("Game Over!\n")
                     console.log("The word you were guessing was ", chosenWord);
