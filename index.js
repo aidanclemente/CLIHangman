@@ -24,6 +24,7 @@ var hangman = {
     },
 
     startGame: function() {
+        var that = this;
 
         inquirer.prompt([
             {
@@ -33,11 +34,11 @@ var hangman = {
             }
         ]).then(function(answer) {
             if(answer.startGame) {
-                this.newGame();
+                that.newGame();
             } else {
                 console.log("Whenever you're ready, I'll be waiting for you!");
             }
-        }.bind(this));
+        });
     },
 
     newGame: function() {
@@ -55,7 +56,9 @@ var hangman = {
 
     promptForLetters: function() {
         var that = this;
+
         //prompt the user for letters
+    if(this.guessesRemaining > 0) {
         inquirer.prompt([
             {
                 name: "letterGuessed",
@@ -70,6 +73,7 @@ var hangman = {
                 }
             }
         ]).then(function(answer) {
+
             var userGuess = answer.letterGuessed.toUpperCase();
             console.log("User Guess: ", userGuess);
 
@@ -77,9 +81,12 @@ var hangman = {
             
             // Check if the userGuess is in the guessedLetters array
             if (that.guessedLetters.indexOf(userGuess) != -1) {
+
                 console.log("\nYou've already guessed ", userGuess + ". Please guess a new letter.\n")
                 that.promptForLetters();
+
             } else if (chosenWord.split("").indexOf(userGuess) != -1) {
+
                 that.guessedLetters.push(userGuess);
                 console.log("Yeah! " + userGuess + " was correct!");
 
@@ -95,40 +102,52 @@ var hangman = {
                     newWord.returnString();
 
                     console.log("\nYou Won!");
+
                 } else {
+
                     that.guessesRemaining--;
                     console.log("Guessed Letters: ", that.guessedLetters);
                     console.log("\nGuesses Left: ", that.guessesRemaining + "\n");
                     console.log("* * * * * * * * * * * * * * * * * *\n\n")
 
                     newWord.returnString()
+                    that.promptForLetters();
                 }
 
                 // Continue game if not won else game over
                 // && chosenWord === that.strWord
-                if (that.guessesRemaining > 0) {
-                    that.promptForLetters();
-                } else{
-                    console.log("Game Over!\n")
-                    console.log("The word you were guessing was ", chosenWord);
-                    console.log("\nBetter luck next time!");
-                }
+                // if (that.guessesRemaining > 0) {
+                //     that.promptForLetters();
+                // } else{
+                //     console.log("Game Over!\n")
+                //     console.log("The word you were guessing was ", chosenWord);
+                //     console.log("\nBetter luck next time!");
+                //     that.startGame();
+                // }
 
 
             } else {
                 that.guessesRemaining--;
+                that.guessedLetters.push(userGuess);
+                console.log("Guessed Letters: ", that.guessedLetters);
                 console.log("Nope. Guess again!\n");
                 console.log("You have ", that.guessesRemaining + " so choose wisely!\n")
-                // show updated number of guessesRemaining
-                newWord.returnString()
-                // show the array of letters guessed
                 
+
+                newWord.returnString()
+
+                that.promptForLetters();
             }
 
-         }.bind(this));
+         });
 
-    },
-
+    } else {
+        console.log("Game Over!\n")
+        console.log("The word you were guessing was ", chosenWord);
+        console.log("\nBetter luck next time!");
+        that.startGame();
+    }
+    } 
 }
 
 hangman.startGame();
