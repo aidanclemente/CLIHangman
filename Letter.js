@@ -3,16 +3,16 @@ var inquirer = require("inquirer");
 function Letter(letterInWord) {
 //   * A string value to store the underlying character for the letter
     this.letter = letterInWord,
-
+    
+    this.numOfLetterFound = 0,
 //   * A boolean value that stores whether that letter has been guessed yet
     this.hasBeenGuessed = false,
 
 //   * A function that returns the underlying character if the letter has been guessed, or a placeholder (like an underscore) if the letter has not been guessed
     this.showLetter = function() {
-       var numOfLetterFound = 0;
 
         if (this.hasBeenGuessed === true) {
-            numOfLetterFound++;
+            this.numOfLetterFound++;
             return this.letter;
         } else {
            return " _";    

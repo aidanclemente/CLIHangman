@@ -21,11 +21,12 @@ function Word(chosenWord) {
         console.log(strWord);
     };
 
+
     this.guess = function(letterGuessed) {
 
         for (var i = 0; i < this.arrayOfLetterObjects.length; i++) {
             this.arrayOfLetterObjects[i].checkLetter(letterGuessed);
-        }   
+        } 
     };
 
 };

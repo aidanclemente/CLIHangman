@@ -5,7 +5,7 @@ var isLetter = require('is-letter');
 var hangman = {
 
     guessedLetters: [],
-    guessesRemaining: 13,
+    guessesRemaining: 10,
 
     wordsArray: ["DAHLIA", "HYACINTH", "BUTTERCUP", "LARKSPUR", "ANEMONE", "HYDRANGEA", "ORCHIDS", "BEGONIA", "PEONY", "MARIGOLD"],
 
@@ -16,6 +16,7 @@ var hangman = {
 
             //This console is showing the chosen word
             console.log("Chosen Word: ", chosenWord);
+            console.log("length: ", chosenWord.length);
 
         newWord = new Word(chosenWord);
 
@@ -34,6 +35,9 @@ var hangman = {
             }
         ]).then(function(answer) {
             if(answer.startGame) {
+                this.guessedLetters = [];
+                this.guessesRemaining = 10;
+
                 that.newGame();
             } else {
                 console.log("Whenever you're ready, I'll be waiting for you!");
@@ -42,8 +46,6 @@ var hangman = {
     },
 
     newGame: function() {
-        guessedLetters = [];
-        guessesRemaining = 13;
 
         console.log("\n* * * * * * * * * * * * * * * * * *");
         console.log("     The catagory is flowers");
@@ -93,7 +95,7 @@ var hangman = {
                 console.log("dddd d: ", newWord.strWord);
 
          // XXXXXXXXXXXX    This isn't working!!!!  XXXXXXXXXXXXXXXXX
-                if (newWord.strWord == chosenWord) {
+                if (that.numOfLetterFound == chosenWord.length) {
                     // If guessed alert the user they won
                         // Ask the user if they want to play again
                             //if yes, then startGame
@@ -130,8 +132,8 @@ var hangman = {
                 that.guessesRemaining--;
                 that.guessedLetters.push(userGuess);
                 console.log("Guessed Letters: ", that.guessedLetters);
-                console.log("Nope. Guess again!\n");
-                console.log("You have ", that.guessesRemaining + " so choose wisely!\n")
+                console.log("Nope! Guess again.\n");
+                console.log("You have ", that.guessesRemaining + " more guesses. So choose wisely!\n")
                 
 
                 newWord.returnString()
@@ -142,10 +144,11 @@ var hangman = {
          });
 
     } else {
-        console.log("Game Over!\n")
+        console.log("\nGame Over!\n")
         console.log("The word you were guessing was ", chosenWord);
-        console.log("\nBetter luck next time!");
-        that.startGame();
+        console.log("\nBetter luck next time!\n");
+        //This isn't working right
+        //that.startGame();
     }
     } 
 }
