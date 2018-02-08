@@ -4,7 +4,6 @@ function Letter(letterInWord) {
 //   * A string value to store the underlying character for the letter
     this.letter = letterInWord,
     
-    this.numOfLetterFound = 0,
 //   * A boolean value that stores whether that letter has been guessed yet
     this.hasBeenGuessed = false,
 
@@ -12,7 +11,6 @@ function Letter(letterInWord) {
     this.showLetter = function() {
 
         if (this.hasBeenGuessed === true) {
-            this.numOfLetterFound++;
             return this.letter;
         } else {
            return " _";    

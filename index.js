@@ -4,6 +4,7 @@ var isLetter = require('is-letter');
 
 var hangman = {
 
+    numOfLetterFound: 0,
     guessedLetters: [],
     guessesRemaining: 10,
 
@@ -16,7 +17,6 @@ var hangman = {
 
             //This console is showing the chosen word
             console.log("Chosen Word: ", chosenWord);
-            console.log("length: ", chosenWord.length);
 
         newWord = new Word(chosenWord);
 
@@ -90,9 +90,12 @@ var hangman = {
             } else if (chosenWord.split("").indexOf(userGuess) != -1) {
 
                 that.guessedLetters.push(userGuess);
+                that.numOfLetterFound++;
+
                 console.log("Yeah! " + userGuess + " was correct!");
 
-                console.log("dddd d: ", newWord.strWord);
+                console.log("Number of letters Found: ", that.numOfLetterFound);
+                console.log("Chosen word length: ", chosenWord.length);
 
          // XXXXXXXXXXXX    This isn't working!!!!  XXXXXXXXXXXXXXXXX
                 if (that.numOfLetterFound == chosenWord.length) {
@@ -103,7 +106,7 @@ var hangman = {
 
                     newWord.returnString();
 
-                    console.log("\nYou Won!");
+                    console.log("\nCongratulations!!!! You Won!");
 
                 } else {
 
