@@ -13,7 +13,8 @@ function Letter(letterInWord) {
 
     // Show the letter method
     this.showLetter = function() {
-        if (Letter.hasBeenGuessed === true) {
+
+        if (this.hasBeenGuessed === true) {
             return " " + this.letter;
         } else {
            return " _";    
@@ -24,7 +25,7 @@ function Letter(letterInWord) {
 
     // Check Letter for match function
     this.checkLetter = function(letterGuessed) {
-        console.log("Check Letter ran");
+
         if (letterGuessed.toUpperCase() === this.letter.toUpperCase()) {
             this.hasBeenGuessed = true;
         }

@@ -11,6 +11,9 @@ var Letter = require("./Letter.js");
 // Word Constructor
 function Word(chosenWord) {
 
+    //This is to check if word has been completely guessed
+    this.found = false;
+
     // Needs to store the selected word from wordsArray
     this.chosenWord = chosenWord,
     
@@ -39,7 +42,7 @@ function Word(chosenWord) {
         // Takes a character as an argument
         // Calls the checkLetter function on each letter object
     this.guess = function(letterGuessed) {
-        console.log("Guess is running");
+
         for (var i = 0; i < this.arrayOfLetterObjects.length; i++) {
             this.arrayOfLetterObjects[i].checkLetter(letterGuessed);
         }   

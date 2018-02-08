@@ -52,7 +52,7 @@ var hangman = {
         console.log("\n* * * * * * * * * * * * * * * * * *");
         console.log("     The catagory is flowers");
         console.log("* * * * * * * * * * * * * * * * * *\n\n");
-
+        console.log("Number of Guesses: ", this.guessesRemaining + "\n");
         this.chooseWord();
         this.promptForLetters();
         
@@ -83,24 +83,65 @@ var hangman = {
             // These are returning undefined
             console.log("xxx", newWord);
 
-            // Push guess into the guessedLetters array
-            //This is not working, console logs an empty array
             
+            // Need to check if the userGuess is in the this.guessedLetters array
+                //if guessed already
+                //console.log a message
+                //prompt the user for another letter
+
+                //else:
             this.guessedLetters.push(userGuess);
-                console.log("Guessed LEtters: ", this.guessedLetters);
 
             if (chosenWord.split("").indexOf(userGuess) != -1) {
+
                 console.log("Yeah! " + userGuess + " was correct!");
                 
                 //This returnString isn't updated with the letter revealed
-                newWord.returnString();
+                // newWord.returnString();
+
+                if (newWord.returnString() === chosenWord.split("")) {
+                    // If guessed alert the user they won
+                        // Ask the user if they want to play again
+                            //if yes, then startGame
+                            //else thank you for playing
+                            console.log("You Won!");
+                } else {
+                    that.guessesRemaining--;
+                    console.log("Guessed Letters: ", this.guessedLetters);
+                    console.log("\nGuesses Left: ", that.guessesRemaining + "\n");
+                    console.log("* * * * * * * * * * * * * * * * * *\n\n")
+
+                    newWord.returnString()
+                }
+                // Need a check here to see if the entire word was guessed
+                    
+                    //update the string 
+                    //print number of guessesRemaining
+                    //print lettersGuessed
+                if (this.guessesRemaining > 0) {
+                    this.promptForLetters();
+                }
+
+
             } else {
-                console.log("Nope. Guess again!");
+                that.guessesRemaining--;
+                console.log("Nope. Guess again!\n");
+                console.log("You have ", that.guessesRemaining + " so choose wisely!\n")
                 // show updated number of guessesRemaining
-               newWord.returnString()
+                newWord.returnString()
                 // show the array of letters guessed
-                //call the promptForLetters again if guessesRemaining > 0
+                
             }
+
+            // if guessesRemaining > 0 and the whole word isn't guessed: call the promptForLetters again 
+
+            //Else alert the user Game Over
+                //Tell them the word they were guessing
+                //Ask if they want to play again
+                    //if yes, startGame
+                    //else Thank you for playing, better luck next time
+
+
         }.bind(this));
             // if isLetter === true
                 // give them feed back
